@@ -2,3 +2,99 @@
 https://github.com/smartcontractkit/full-blockchain-solidity-course-py
 https://www.youtube.com/watch?v=M576WGiDBdQ&t=14335s
 
+### Working environment
+Visual studio code - text editor >> write code and execute in terminal by using WSL (Windows subsystem for Windows), тобто ти кодиш на віндовсі але операційно на UBUNTU, менше багів/помилок.
+Ganache - local blockchain ENV для тестових операцій. Можна епку відкривати, найпроф - напряму в терміналі, прописуєш ganache
+Brownie - 
+Remix - for start only (text editor+compilet+deployer) 
+
+### General
+
+1) Кожний смарт починається із : 
+ // SPDX-License-Identifier: MIT
+ pragma solidity >=0.6.6 <0.9.0; >>> must be the same as compiler version
+
+2) Variable specification : variable_type var_name
+ 
+
+2.1) Complex variable/new objects type - i.e Nazar 10 (nazar = var 1, 10 - var2)
+   struct complex_var_name {
+     uint256 var_name1;
+     string var_name2;
+   }
+   complex_var_name public person1 =  complex_var_name ({var_name1 : 10, var_name2 : "Nazar"}) >>> will create Nazar 10
+  *Якщо змінна складна і мають задаватися спец.значення то ставляться "{}" після назви комплекс змінної і після простої змінної всередині складної ставляться ":" щоб призначити їй значення >>> complex_var_name ({var_name1 : 10, var_name2 : "Nazar"}) 
+
+3) Кожен рядок закінч із ";"
+
+4) Контракт починається із
+ contract contract_name {
+ ....}
+
+5) Функція 
+ позначається function function_name(). Після використання function() також ставиться {}
+ Типи Функцій: 
+  payable (там де рух коштів) і які змінюють стан блокчейну, 
+  view  ті що витягують дані із існууючого блокчейна і є загальнодоступні, non-payable
+  pure ті що витягують дані із існууючого блокчейна і є загальнодоступні, non-payable, used for math
+
+16) Visibility&Aceess of variables/functions
+public >> can be called by anybody
+private >>> most restrictive
+external >> can not be called by this contract but only by external contract
+internal >>> can only be called inside the contract
+
+6) Array aka list:
+ позначається як array[] array_name
+ Добавити в арей: 1) array_name.push(var_name) or  2) var_name.push(array_name)
+ Dynamic array array[] VS Fixed array of 5 items will be array[5]
+ 
+7) Msg.sender той хто викликає функцію
+8) Msg.value - скільки перекидується грошей
+ 
+9) Mapping - Привязування двох змінних одна до одної (суму трансферу і адресу гаменця) 
+ mapping (address >= uint256) public mapping_name
+
+10) constructor() - функція в яку ти закладаєш усе, що має статися одночасно із деплойментом контракту, наприклад право власності
+ constructor () public {
+ owner = msg.sender
+ 
+11) Chainlink = data oracles дає змогу запиляти в контракт інфу із зовн світу за допомогою interface які можна знайти в npm chainlink/repository github і перенести за допомогою import
+ 
+12) msg.sender.transfer(address(this).balance); - той хто викликає функцію перекидує з адресу цього this контракту весь баланс
+ 
+13) modifier - функція яка допомагає зазначити необхідну умову яка потім буде реюзатися для кожної функцію
+  а) Створи умову
+ modifier modifier_name {
+   require(msg.sender == owner);
+   -; // "-" вказає що після умови виконуй всі наст рядки контракту
+ б) Потім в кожній функції вставляй modifier_name і це буде виконуватися
+
+14) Loops - таке ж як у пайтон, циркуляція
+for (var_type var_name) index =0, var_name < var_name.length, var_name++
+Для якої верібл запустити >> Start >>>> Доки циркулювати >>>  Який наступний елемент після початкового, (++ означає наступний)
+
+15) return() функція яка витягує дані
+function function_name() public view returns(var_type)
+return return_var_name
+
+16) Збереження змінних які виеористовуються у функціях
+  memory >>> stored only during the execution of the function, after execution - delete this variable
+  storage >>> forever
+  function addPerson(string memory _name, uint256 _favoriteNumber) public{ >>> memory means variable addPerson will be deleted after execution, if var_type inside function is string it must be memory storage
+
+17) створити папку - mkdir folder_name, 
+перейти в directory - cd folder_name
+
+
+
+
+
+
+
+
+
+
+
+
+
