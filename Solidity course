@@ -5,7 +5,7 @@ https://www.youtube.com/watch?v=M576WGiDBdQ&t=14335s
 ### Working environment
 Visual studio code - text editor >> write code and execute in terminal by using WSL (Windows subsystem for Windows), тобто ти кодиш на віндовсі але операційно на UBUNTU, менше багів/помилок.
 Ganache - local blockchain ENV для тестових операцій. Можна епку відкривати, найпроф - напряму в терміналі, прописуєш ganache
-Brownie - 
+Brownie - smart contract dev platform buillt on python
 Remix - for start only (text editor+compilet+deployer) 
 
 ### General
@@ -13,6 +13,8 @@ Remix - for start only (text editor+compilet+deployer)
 1) Кожний смарт починається із : 
  // SPDX-License-Identifier: MIT
  pragma solidity >=0.6.6 <0.9.0; >>> must be the same as compiler version
+
+1) Якщо в терміналі VS cтворити directory and after нап " code . " то ти відкриєш новий VS і зліва в панелі в тебе буде суто цей фолдер
 
 2) Variable specification : variable_type var_name
  
@@ -86,8 +88,24 @@ return return_var_name
 17) створити папку - mkdir folder_name, 
 перейти в directory - cd folder_name
 
+############### Brownie #######################################################################################################
 
+! starts new project
+brownie init
 
+! There are 2 Contracts sections on LHS of VS, Contracts itself is where u write your contracts, built>contracts where transformed version by brownie exists, NEVER yours own
+
+! Auto compiler that read the contract and put contract.json in built>contracts section on the LHS of VS
+brownie compile
+
+! to Deploy a contact, u need a script, go to script section and create new file
+To run a deployment
+brownie run scripts/file_name.sol
+
+! Brownie initially uses local ganache blockchains but u need only one for TESTS only so use package and specidy formula
+from brownie import accounts
+def deploy_simple_storage():
+  account = accounts[0]
 
 
 
