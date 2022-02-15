@@ -107,8 +107,67 @@ from brownie import accounts
 def deploy_simple_storage():
   account = accounts[0]
 
+! Account mngmt in brownie
+ 1) in the command line in terminal write:
+ brownie accounts new acc_name
+ 2) it will ask u to insert your private key for this account
+ 3) To check account list
+ brownie accounts list
+ 4) Delete acc
+  brownie accounts delete acc_name
+ 5) Use acc in smart contract
+  account = accounts.load("acc_name")
+ 6) Alt 1 The drawback of this method is that u will always be in need of typing your password but it's secure
+ 
+ ! Environmental variables
+ Create files 
+  .env >>> put private key
+  .brownie-config.yaml >>> put dotenv: .env ### it will tell brownie to open always .env file when script is run
+  To access in smart contact:
+  account = accounts.add(os.getenv("PRIVATE KEY")
+  Alt 2:  The drawback of this method is that u can share your .env file and someone will steal our funds 
 
-
+  
+  Alternative: put ur private key in one place and reuse it. For this reason you use your brownie config file - .brownie-config.yaml
+  1) Open .brownie-config.yaml and Write 
+  wallets:
+  from_key: ${PRIVATE_KEY}
+  2) inside smart contract:
+  from brownie import accounts, config
+  accounts.add(config["wallets"]["from_key"]) 
+  ### secure and easy manageble private key
+  
+  ! To import any contract into brownie
+  from brownie import Contract_name
+  
+  ! To deploy contract >> brownie automatically recognize whether you do transact or call
+  Contract_name.deploy({"from": account}) >>> any transaction ALWAYS have "from" : address In BROWNIE
+ 
+ ! Testing of your smart contracts is done by using python methods due to highe richness of language, Go to pytest if need
+  Create file test_contractname.py under test menu on the LHS of VisualCode
+  Імпорт необіхдних бібліотек (accounts, contracts_name)
+  Створи фунцію перевірки:
+   def test_name():
+    ....
+  ТЕст складається із 3ьох частин:
+   Arrange >>> з якого акаунта перевірка account = accounts[0], весь початковий сетап може бути якийсь наявний контракт уже
+   Act >>> run a contract, retrieve intital value, create var you expected to retrieve
+   Assert >>> ствои умовву aka starting value == expected
+  Run command
+   brownie test
+  
+  ! Testing different part functions:
+  brownie test -k function_name >>>for test of 1 specific function
+  brownie test -pdb >>>> check different parts at a time
+  brownie test -s >>>  will print the line which parts passed, which did not
+  
+  ! DEployment to mainnet in Brownie
+   Brownie has prepackage of network list , check > brownie networks list
+   All under dev section are temporary and are deleted after our scripts completes
+   Connect to Infura through project id by specifying it inside .env by: >>>Brownie understands greatly infura
+    export WEB3_INFURA_PROJECT_ID='574246430f8446238e30bf7ff36c58d1` >>> project id digits are taken from infura
+   Run command in terminal:
+   brownie run scripts/name.py -- network kovan >>> will deploy to kovan network
 
 
 
