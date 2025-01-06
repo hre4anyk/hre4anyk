@@ -1,8 +1,7 @@
 - 👋 Hi, I’m @hre4anyk
-- 👀 I’m interested in web3 and Metaverse
-- 🌱 I’m currently learning Solidity
-- 💞️ I’m looking to collaborate on any project my investment and strategy background suits
-- 📫 How to reach me: Twitter https://twitter.com/hre4anyk , LinkedIn: 
+- 👀 I’m interested in web3 and AI. Actively looking for technical co-founders and innovative startups to build modern consumer applications leveraging blockchain and AI
+- 🌱 I’m currently learning Web Development
+- 📫 How to reach me: Twitter https://twitter.com/hre4anyk , LinkedIn: https://www.linkedin.com/in/hrechanyk/
 
 <!---
 hre4anyk/hre4anyk is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
